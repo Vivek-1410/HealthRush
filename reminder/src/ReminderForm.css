@@ -1,4 +1,4 @@
-/* Form Styles */
+
 .reminder-form {
   background: white;
   padding: 2rem;
@@ -113,7 +113,6 @@
   transform: translateY(0);
 }
 
-/* Responsive adjustments */
 @media (max-width: 480px) {
   .quantity-inputs {
     grid-template-columns: 1fr;

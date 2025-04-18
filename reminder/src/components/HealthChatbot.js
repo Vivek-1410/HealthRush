@@ -12,7 +12,6 @@ const HealthChatbot = () => {
   ]);
   const [loading, setLoading] = useState(false);
 
-  // Local cache for common health questions
   const healthResponses = {
     "headache": "Headaches can have many causes including stress, dehydration, or eyestrain. Drink water and rest. If severe or persistent, consult a doctor.",
     "fever": "Fever is often a sign of infection. Rest and stay hydrated. If temperature exceeds 103°F (39.4°C) or lasts more than 3 days, seek medical attention.",
@@ -23,7 +22,7 @@ const HealthChatbot = () => {
 
   const getAIResponse = async (userInput) => {
     try {
-      // First check local cache
+     
       const lowerInput = userInput.toLowerCase();
       for (const [keyword, response] of Object.entries(healthResponses)) {
         if (lowerInput.includes(keyword)) {
@@ -31,7 +30,7 @@ const HealthChatbot = () => {
         }
       }
 
-      // If no cached response, try API
+      
       const response = await fetch("https://api.deepinfra.com/v1/openai/chat/completions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -92,7 +91,6 @@ const HealthChatbot = () => {
       right: '20px',
       zIndex: 1000
     }}>
-      {/* Floating Button */}
       {!isOpen && (
         <button 
           onClick={() => setIsOpen(true)}
@@ -114,7 +112,7 @@ const HealthChatbot = () => {
         </button>
       )}
 
-      {/* Chat Window */}
+      
       {isOpen && (
         <div style={{
           width: '320px',
@@ -125,7 +123,7 @@ const HealthChatbot = () => {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          {/* Header */}
+          
           <div style={{
             padding: '15px',
             background: '#4CAF50',
@@ -148,7 +146,7 @@ const HealthChatbot = () => {
             </button>
           </div>
 
-          {/* Messages */}
+          
           <div style={{
             flex: 1,
             padding: '15px',
@@ -222,7 +220,7 @@ const HealthChatbot = () => {
             )}
           </div>
 
-          {/* Input */}
+          
           <form 
             onSubmit={handleSubmit}
             style={{
@@ -268,7 +266,7 @@ const HealthChatbot = () => {
         </div>
       )}
 
-      {/* Animation */}
+      
       <style>{`
         @keyframes bounce {
           0%, 60%, 100% { transform: translateY(0); }

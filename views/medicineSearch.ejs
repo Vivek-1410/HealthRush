@@ -10,10 +10,10 @@
 
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card shadow p-4 w-100" style="max-width: 500px;">
-            <h2 class="text-center mb-4 text-primary">🔍 Medicine Search</h2>
+            <h2 class="text-center mb-4 text-primary"> Medicine Search</h2>
             <form action="/Home/medicine" method="POST">
                 
-                <!-- Dropdown for selecting a Medicine -->
+                
                 <div class="mb-3">
                     <label for="drugName" class="form-label">Select a Medicine</label>
                     <select class="form-select" id="drugName" name="drugName" required>
@@ -31,7 +31,7 @@
                     </select>
                 </div>
 
-                <!-- Dropdown for selecting Generic/Brand -->
+               
                 <div class="mb-3">
                     <label for="searchType" class="form-label">Search by</label>
                     <select class="form-select" id="searchType" name="searchType" required>
@@ -40,7 +40,7 @@
                     </select>
                 </div>
 
-                <!-- Medicine Search Button -->
+                
                 <button type="submit" class="btn btn-primary w-100">Search</button>
             </form>
         </div>

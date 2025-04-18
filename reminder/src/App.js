@@ -12,7 +12,6 @@ function App() {
   const alarmAudioRef = useRef(null);
   const timeoutRefs = useRef([]);
 
-  // Load reminders from localStorage
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('reminders')) || [];
     setReminders(stored);
@@ -85,11 +84,10 @@ function App() {
       alarmAudioRef.current.currentTime = 0;
     }
 
-    // Update remaining quantity after confirmation
     const updatedReminders = reminders.map(r => {
       if (r.id === takenReminder.id) {
         const newQuantity = r.remainingQuantity - r.doseQuantity;
-        const isLow = newQuantity <= r.doseQuantity * 3; // Warn when 3 doses left
+        const isLow = newQuantity <= r.doseQuantity * 3; 
         
         if (isLow) {
           setNotification(`Low quantity alert: ${r.medicineName} has only ${newQuantity} ${r.unit} left!`);
