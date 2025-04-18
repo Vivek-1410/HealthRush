@@ -1,45 +1,60 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import './AlarmPage.css';
 
 function AlarmPage({ reminder, onStop }) {
-  const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = React.useRef(null);
 
-  const handleStartAlarm = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.play()
-        .then(() => setIsPlaying(true))
-        .catch(err => {
-          console.error("Autoplay failed:", err);
-          document.addEventListener('click', handleStartAlarm, { once: true });
-        });
-    }
-  };
+  React.useEffect(() => {
+    const playAlarm = () => {
+      if (audioRef.current) {
+        audioRef.current.play()
+          .catch(err => {
+            console.error("Autoplay failed:", err);
+            const handleFirstInteraction = () => {
+              audioRef.current.play().catch(console.error);
+              document.removeEventListener('click', handleFirstInteraction);
+            };
+            document.addEventListener('click', handleFirstInteraction);
+          });
+      }
+    };
+
+    playAlarm();
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
 
   const handleStopAlarm = () => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.pause();
-      audio.currentTime = 0;
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
     }
-    setIsPlaying(false);
-    onStop();
+    onStop(reminder);
   };
 
   return (
     <div className="alarm-page">
-      <h2>It's time to take your {reminder.medicineName}!</h2>
-      <audio ref={audioRef} src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" loop />
-      {!isPlaying ? (
-        <button className="reminder-button start" onClick={handleStartAlarm}>
-          Start Alarm
+      <div className="alarm-content">
+        <h2>Time to take your medication!</h2>
+        <div className="medicine-info">
+          <h3>{reminder.medicineName}</h3>
+          <p><strong>Dose:</strong> {reminder.doseQuantity} {reminder.unit}</p>
+          <p><strong>Remaining:</strong> {reminder.remainingQuantity} {reminder.unit}</p>
+        </div>
+        <audio 
+          ref={audioRef} 
+          src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" 
+          loop 
+        />
+        <button className="stop-btn" onClick={handleStopAlarm}>
+          I've taken my medicine
         </button>
-      ) : (
-        <button className="reminder-button stop" onClick={handleStopAlarm}>
-          Stop Alarm
-        </button>
-      )}
+      </div>
     </div>
   );
 }

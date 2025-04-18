@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReminderForm from './ReminderForm';
 import ReminderList from './ReminderList';
 import AlarmPage from './AlarmPage';
+import HealthChatbot from './components/HealthChatbot';
 import './App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const alarmAudioRef = useRef(null);
   const timeoutRefs = useRef([]);
 
+  // Load reminders from localStorage
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('reminders')) || [];
     setReminders(stored);
@@ -75,28 +77,46 @@ function App() {
         setTimeout(() => setNotification(null), 3000);
       });
     }
-    if (reminder.frequency !== 'once') {
-      const nextTime = getNextAlarmTime(reminder);
-      if (nextTime) {
-        const delay = nextTime - new Date();
-        if (delay > 0) {
-          const timeoutId = setTimeout(() => triggerAlarm(reminder), delay);
-          timeoutRefs.current.push(timeoutId);
-        }
-      }
-    }
   };
 
-  const stopAlarm = useCallback(() => {
+  const stopAlarm = useCallback((takenReminder) => {
     if (alarmAudioRef.current) {
       alarmAudioRef.current.pause();
       alarmAudioRef.current.currentTime = 0;
     }
+
+    // Update remaining quantity after confirmation
+    const updatedReminders = reminders.map(r => {
+      if (r.id === takenReminder.id) {
+        const newQuantity = r.remainingQuantity - r.doseQuantity;
+        const isLow = newQuantity <= r.doseQuantity * 3; // Warn when 3 doses left
+        
+        if (isLow) {
+          setNotification(`Low quantity alert: ${r.medicineName} has only ${newQuantity} ${r.unit} left!`);
+          setTimeout(() => setNotification(null), 5000);
+        }
+        
+        return {
+          ...r,
+          remainingQuantity: newQuantity > 0 ? newQuantity : 0,
+          lastTaken: new Date().toISOString()
+        };
+      }
+      return r;
+    });
+
+    setReminders(updatedReminders);
+    localStorage.setItem('reminders', JSON.stringify(updatedReminders));
     setCurrentAlarm(null);
-  }, []);
+    scheduleAllAlarms(updatedReminders);
+  }, [reminders, scheduleAllAlarms]);
 
   const handleNewReminder = useCallback((newReminder) => {
-    const updated = [...reminders, { ...newReminder, id: Date.now() }];
+    const updated = [...reminders, { 
+      ...newReminder, 
+      id: Date.now(),
+      remainingQuantity: parseInt(newReminder.totalQuantity)
+    }];
     setReminders(updated);
     localStorage.setItem('reminders', JSON.stringify(updated));
     scheduleAllAlarms(updated);
@@ -135,6 +155,7 @@ function App() {
           />
         </>
       )}
+       <HealthChatbot />
     </div>
   );
 }

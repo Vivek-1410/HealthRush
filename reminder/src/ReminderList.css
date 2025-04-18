@@ -1,70 +1,95 @@
+/* Reminder List Styles */
 .reminder-list {
-    margin-top: 2rem;
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .reminder-list h2 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-  }
-  
-  .reminder-list-items {
-    list-style: none;
-  }
-  
-  .reminder-list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .reminder-list-item:last-child {
-    border-bottom: none;
-  }
-  
-  .reminder-info {
-    display: flex;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
+
+.reminder-list h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.no-reminders {
+  padding: 1.5rem;
+  color: #7f8c8d;
+  text-align: center;
+  font-style: italic;
+}
+
+.reminder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s;
+}
+
+.reminder-item:hover {
+  background-color: #fafafa;
+}
+
+.reminder-item:last-child {
+  border-bottom: none;
+}
+
+.reminder-info {
+  flex: 1;
+}
+
+.medicine-name {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+}
+
+.due-date, .quantity-info, .frequency {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.quantity-info {
+  color: #ff4444;
+  font-weight: 500;
+}
+
+.delete-btn {
+  background-color: #f5f5f5;
+  color: #f44336;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.delete-btn:hover {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .reminder-item {
     flex-direction: column;
-    gap: 0.3rem;
-  }
-  
-  .medicine-name {
-    font-weight: bold;
-    color: #2c3e50;
-  }
-  
-  .due-date {
-    color: #666;
-    font-size: 0.9rem;
-  }
-  
-  .frequency {
-    color: #666;
-    font-size: 0.8rem;
-    font-style: italic;
-  }
-  
-  .no-reminders {
-    padding: 1rem;
-    color: #666;
-    text-align: center;
+    align-items: flex-start;
+    gap: 1rem;
   }
   
   .delete-btn {
-    background-color: #ff4444;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    align-self: flex-end;
   }
-  
-  .delete-btn:hover {
-    background-color: #cc0000;
-  }
+}

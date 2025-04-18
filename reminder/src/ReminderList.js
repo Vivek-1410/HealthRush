@@ -7,11 +7,14 @@ function ReminderList({ reminders, onDelete }) {
     const [h, m] = reminder.reminderTime.split(':').map(Number);
     const target = new Date();
     target.setHours(h, m, 0, 0);
+
     if (target < now) {
       if (reminder.frequency === 'daily') {
         target.setDate(target.getDate() + 1);
       } else if (reminder.frequency === 'weekly') {
         target.setDate(target.getDate() + 7);
+      } else if (reminder.frequency === 'monthly') {
+        target.setMonth(target.getMonth() + 1);
       } else if (reminder.frequency === 'custom' && reminder.customDays.length > 0) {
         const currentDay = now.getDay();
         const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -24,38 +27,40 @@ function ReminderList({ reminders, onDelete }) {
       }
     }
     
-    return target.toLocaleString();
+    return target.toLocaleString([], {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   };
 
   return (
     <div className="reminder-list">
-      <h2>All Reminders</h2>
-      <ul className="reminder-list-items">
-        {reminders.length === 0 ? (
-          <li className="no-reminders">No reminders set!</li>
-        ) : (
-          reminders.map((reminder) => (
-            <li key={reminder.id} className="reminder-list-item">
+      <h2>Your Reminders</h2>
+      {reminders.length === 0 ? (
+        <p className="no-reminders">No reminders set yet!</p>
+      ) : (
+        <ul>
+          {reminders.map((reminder) => (
+            <li key={reminder.id} className="reminder-item">
               <div className="reminder-info">
-                <span className="medicine-name">{reminder.medicineName}</span>
-                <span className="due-date">Due: {getNextDueDate(reminder)}</span>
-                <span className="frequency">
-                  ({reminder.frequency}
-                  {`reminder.frequency === 'custom' && reminder.customDays.length > 0 &&
-                    : ${reminder.customDays.join(', ')}`}
-                  )
-                </span>
+                <h3>{reminder.medicineName}</h3>
+                <p><strong>Next Dose:</strong> {getNextDueDate(reminder)}</p>
+                <p><strong>Quantity:</strong> {reminder.remainingQuantity}/{reminder.totalQuantity} {reminder.unit}</p>
+                <p><strong>Dose:</strong> {`reminder.doseQuantity} {reminder.unit} {reminder.frequency === 'custom' ? on ${reminder.customDays.join(', ')} : reminder.frequency`}</p>
               </div>
               <button 
-                className="delete-btn" 
+                className="delete-btn"
                 onClick={() => onDelete(reminder.id)}
               >
                 Delete
               </button>
             </li>
-          ))
-        )}
-      </ul>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
