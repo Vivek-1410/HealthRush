@@ -1,0 +1,42 @@
+<% layout("/layouts/boilerplate") -%>
+
+<body>
+    <div class="useractivity-container">
+        <h1 class="useractivityh1">Track Your Progress</h1>
+        <div class="motivation-box">
+            <p>Keep pushing forward! Every small effort brings you closer to your goal.</p>
+            <p>Consistency beats intensity. Stay committed and achieve greatness!</p>
+        </div>
+    
+        <h2 class="useractivityh2">Your Activity Log</h2>
+        <% if (u.trackUser.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Exercise Type</th>
+                        <th>Duration (mins)</th>
+                        <th>Intensity</th>
+                        <th>Weight (kg)</th>
+                        <th>Calories Burned (kcal)</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% u.trackUser.forEach(activity => { %>
+                        <tr>
+                            <td><%= activity.exerciseType %></td>
+                            <td><%= activity.duration %></td>
+                            <td><%= activity.intensity %></td>
+                            <td><%= activity.weight %></td>
+                            <td><%= activity.caloriesBurned %></td>
+                            <td><%= new Date(activity.date).toLocaleDateString() %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="no-activity">No activities tracked yet. Start your journey today!</p>
+        <% } %>
+    </div>
+    
+</body>

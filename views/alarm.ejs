@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") -%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alarm - Take Medicine</title>
+  <link rel="stylesheet" href="/css/AlarmPage.css">
+</head>
+<body>
+  <div class="alarm-page">
+    <h2>It's time to take your <%= reminder.medicineName %>!</h2>
+    <audio id="alarmAudio" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" loop></audio>
+
+    <button id="startBtn" class="reminder-button start">Start Alarm</button>
+    <button id="stopBtn" class="reminder-button stop" style="display: none;">Stop Alarm</button>
+  </div>
+
+  <script>
+    const audio = document.getElementById('alarmAudio');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+
+    startBtn.addEventListener('click', () => {
+      audio.play()
+        .then(() => {
+          startBtn.style.display = 'none';
+          stopBtn.style.display = 'inline-block';
+        })
+        .catch(err => {
+          console.error("Autoplay failed:", err);
+          document.addEventListener('click', () => startBtn.click(), { once: true });
+        });
+    });
+
+    stopBtn.addEventListener('click', () => {
+      audio.pause();
+      audio.currentTime = 0;
+      stopBtn.style.display = 'none';
+      startBtn.style.display = 'inline-block';
+      window.location.href = '/reminders';
+    });
+  </script>
+</body>
+</html>

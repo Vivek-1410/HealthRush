@@ -1,0 +1,40 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="dashboard-main">
+        <div class="dashboard-container">
+            <h1 class="dashboard-header">YOURSELF</h1>
+            
+            <div class="dashboard-info">
+                <div class="info-card">
+                    <strong>NAME:</strong> <span id="dashboard-name"><%= user.name%></span>
+                </div>
+                <div class="info-card">
+                    <strong>AGE:</strong> <span id="dashboard-age"><%= user.age%></span>
+                </div>
+                <div class="info-card">
+                    <strong>GENDER:</strong> <span id="dashboard-gender"><%= user.gender%></span>
+                </div>
+                <div class="info-card">
+                    <strong>HEIGHT:</strong> <span id="dashboard-height"><%= user.height%></span>
+                </div>
+                <div class="info-card">
+                    <strong>WEIGHT:</strong> <span id="dashboard-weight"><%= user.weight%></span>
+                </div>
+                <div class="info-card">
+                    <strong>ISSUES:</strong> <span id="dashboard-issues"><%= user.issues%></span>
+                </div>
+                <div class="info-card">
+                    <strong>BMI:</strong> <span id="dashboard-bmi"><%= user.bmi%></span>
+                </div>
+                <div class="info-card">
+                    <strong>FITNESS LEVEL:</strong> <span id="dashboard-fitnessLevel"><%= user.fitnessLevel%></span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="dashboard-image-container">
+            <img src="<%= user.image %>" class="dashboard-img"> 
+        </div>
+    </div>
+    
+</body>

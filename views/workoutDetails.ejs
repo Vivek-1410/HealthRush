@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplate") -%>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4 text-primary">Exercises for <%= workoutName %></h2>
+
+        <% if (error) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <% if (exercises && exercises.length > 0) { %>
+            <div class="list-group">
+                <% exercises.forEach(function(exercise) { %>
+                    <div class="list-group-item p-4 mb-3 border rounded">
+                        <h4><%= exercise.name %></h4>
+                        <p><strong>Type:</strong> <%= exercise.type %></p>
+                        <p><strong>Muscle Group:</strong> <%= exercise.muscle %></p>
+                        <p><strong>Equipment:</strong> <%= exercise.equipment || "No equipment" %></p>
+                        <p><strong>Instructions:</strong></p>
+                        <p><%= exercise.instructions || "No instructions provided." %></p>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p>No exercises found for this muscle group.</p>
+        <% } %>
+    </div>
+</body>

@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+
+  <div class="activity-container">
+    <form id="activityForm" class="activity-form" method="POST" action="/Home/activitytracker">
+      <h2 class="activity-title">Track Your Activity</h2>
+  
+      <label for="exerciseType" class="activity-label">Exercise Type:</label>
+      <select id="exerciseType" name="exerciseType" class="activity-input" required>
+        <option value="Running">Running</option>
+        <option value="Walking">Walking</option>
+        <option value="Cycling">Cycling</option>
+        <option value="Yoga">Yoga</option>
+      </select>
+  
+      <label for="duration" class="activity-label">Duration (in minutes):</label>
+      <input type="number" id="duration" name="duration" class="activity-input" min="1" placeholder="Enter duration" required>
+  
+      <label for="intensity" class="activity-label">Intensity:</label>
+      <select id="intensity" name="intensity" class="activity-input">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+  
+      <label for="weight" class="activity-label">Your Weight (kg):</label>
+      <input type="number" id="weight" name="weight" class="activity-input" min="1" placeholder="Enter weight" required>
+      
+      <input type="hidden" id="caloriesBurnedInput" name="caloriesBurned">
+  
+      
+      <button type="button" class="activity-submit" onclick="calcCalorie()">Calculate Calories</button>
+
+    
+      <button type="submit" class="activity-submit">View Activity History</button>
+    </form>
+  
+    <div id="result" class="activity-result">
+      <h3 class="result-title">Calories Burned:</h3>
+      <p id="caloriesBurned" class="result-value">0</p>
+    </div>
+  </div>
+
+</body>

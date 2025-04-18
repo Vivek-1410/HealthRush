@@ -1,0 +1,15 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5" >
+    <article>
+        <h1 style="margin-top: 80px;" ><%= blog.title %></h1>
+        <h4 class="text-muted">About: <%= blog.disease %></h4>
+        <p class="text-muted">Posted by <%= blog.author.username %> on <%= blog.createdAt.toDateString() %></p>
+        
+        <div class="mt-4 mb-5">
+            <%= blog.content %>
+        </div>
+    </article>
+    <hr>
+    <a href="/Home/blogs" class="btn btn-outline-secondary mt-4" style="margin-bottom: 20px;" >Back to Stories</a>
+</div>

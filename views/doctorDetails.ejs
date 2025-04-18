@@ -1,0 +1,27 @@
+<% layout("/layouts/boilerplate") -%>
+<body>
+    <div class="container my-5">
+        <h2 class="text-center mb-4 mt-5">Our Expert Doctors</h2>
+        <div class="row justify-content-center mt-2">
+            <% for (let doctor of doctors) { %> 
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card shadow-lg border-0">
+                    <img class="card-img-top" style="height: 300px; width:400px;" src="<%= doctor.urlToImage %>" alt="Doctor Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary"><%= doctor.name %></h5>
+                        <p class="card-text"><strong>Specialization:</strong> <%= doctor.specialized %></p>
+                        <p class="card-text"><strong>Email:</strong> 
+                            <a href="mailto:<%= doctor.email %>" class="text-decoration-none"><%= doctor.email %></a>
+                        </p>
+                        <p class="card-text"><strong>Phone:</strong> 
+                            <a href="tel:<%= doctor.phone %>" class="text-decoration-none"><%= doctor.phone %></a>
+                        </p>
+                        <p class="card-text"><strong>Available:</strong> <%= doctor.available %></p>
+                        <a href="/Home/appointment/<%= doctor._id %>" class="btn book-appointment text-white mt-2" style="background-color: rgb(237, 115, 115);">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</body>

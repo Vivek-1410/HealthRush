@@ -1,0 +1,79 @@
+<% layout("/layouts/boilerplate") -%>
+<body>
+    <form class="needs-validation signup-form row mb-4" novalidate method="POST" action="/Home/signup">
+        <h1 class="text-center" style="margin-top: 120px;padding-bottom:25px;"> SignUp on <span class="text-success">HealthRush</span>!</h1>
+
+        <div class="form-contain col-12 col-md-6 offset-md-3 p-4 rounded shadow-lg border border-light">
+            
+            <div class="form-group mb-3">
+                <label for="exampleInputusername">Username</label>
+                <input type="text" class="form-control custom-input" id="exampleInputusername" placeholder="Enter username" name="username" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control custom-input" id="exampleInputEmail1" placeholder="Enter email" name="email" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control custom-input" id="exampleInputPassword1" placeholder="Password" name="password" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-success custom-btn w-25 mb-2">Submit</button>
+            </div>
+
+            <div class="text-center">
+                <p class="mt-2">
+                    Already registered? 
+                    <a href="/Home/login" class="text-success">Click to login</a>
+                </p>
+            </div>
+        </div>
+    </form>
+
+    <style>
+        .form-contain {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .custom-input {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-input:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+        }
+
+        .custom-btn {
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-btn:hover {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .custom-btn:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.6);
+        }
+
+        .text-success {
+            font-weight: bold;
+        }
+    </style>
+</body>

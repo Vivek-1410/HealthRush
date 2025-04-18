@@ -1,0 +1,25 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5">
+    <h1 class="mb-4" style="margin-top: 80px;" >Inspirational Stories</h1>
+    
+    <% if (currUser) { %>
+        <a href="/Home/blogs/new" class="btn btn-primary mb-4">Share Your Story</a>
+    <% } %>
+    
+    <div class="row">
+        <% blogs.forEach(blog => { %>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= blog.title %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">About: <%= blog.disease %></h6>
+                        <p class="card-text"><%= blog.content.substring(0, 150) %>...</p>
+                        <p class="text-muted">Posted by: <%= blog.author.username %></p>
+                        <a href="/Home/blogs/<%= blog._id %>" class="btn btn-sm btn-outline-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>

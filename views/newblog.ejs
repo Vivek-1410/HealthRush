@@ -1,0 +1,24 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5" >
+    <h1 class="mb-4" style="margin-top: 80px;" >Share Your Story</h1>
+    
+    <form action="/Home/blogs" method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="blog[title]" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="disease" class="form-label">Disease/Health Challenge</label>
+            <input type="text" class="form-control" id="disease" name="blog[disease]" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="content" class="form-label">Your Story</label>
+            <textarea class="form-control" id="content" name="blog[content]" rows="10" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary"  style="margin-bottom: 20px;" >Share</button>
+    </form>
+</div>

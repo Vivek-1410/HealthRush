@@ -1,0 +1,21 @@
+<% layout("/layouts/boilerplate") %>
+
+<body class="bg-light">
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow p-4 w-100" style="max-width: 500px;">
+            <h2 class="text-center mb-4 text-primary">💪 Workout Search</h2>
+            <form action="/Home/workout" method="POST">
+                <div class="mb-3">
+                    <label for="workoutName" class="form-label">Select a Muscle</label>
+                    <select class="form-select" id="workoutName" name="workoutName" required>
+                        <option value="chest">Chest</option>
+                        <option value="biceps">Biceps</option>
+                        <option value="shoulders">Shoulders</option>
+                        
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </form>
+        </div>
+    </div>
+</body>

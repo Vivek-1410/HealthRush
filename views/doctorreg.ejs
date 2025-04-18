@@ -1,0 +1,62 @@
+<% layout("/layouts/boilerplate") -%>
+<body>
+    <div class="overall">
+        <div class="form-container">
+            <h1 class="doctor">Doctor Registration</h1>
+    
+            <form class="registration-form">
+                <label for="doctor-name">Full Name</label>
+                <input type="text" id="doctor-name" name="doctor-name" placeholder="Enter your full name" required>
+    
+                
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+    
+               
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+    
+                
+                <label for="specialization">Specialization</label>
+                <input type="text" id="specialization" name="specialization" placeholder="Enter your specialization (e.g., Cardiologist)" required>
+    
+                
+                <label for="experience">Years of Experience</label>
+                <input type="number" id="experience" name="experience" placeholder="Enter years of experience" required>
+    
+                
+                <label for="clinic-name">Clinic Name</label>
+                <input type="text" id="clinic-name" name="clinic-name" placeholder="Enter clinic name" required>
+    
+                
+                <label for="available-days">Available Days</label>
+                <select id="available-days" name="available-days" required>
+                    <option value="">Select your available days</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+    
+                
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="Enter your clinic location" required>
+    
+               
+                <label for="profile-picture">Profile Picture</label>
+                <input type="file" id="profile-picture" name="profile-picture" accept="image/*" required>
+                <label for="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    I agree to the <a href="#">terms and conditions</a>
+                </label>
+                
+                <button type="submit" class="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+
+</body>

@@ -1,0 +1,70 @@
+<body>
+    <div class="Navbar fixed-top" style="font-family: monospace;">
+        <div class="Navbar-header">
+            <h2>Health<span><i class="fa-solid fa-heart-pulse"></i></span>Rush</h2>
+        </div>
+        <ul class="Navbar-options" style="font-size: 0.75rem;">
+            <form method="GET" action="/Home/doctor">
+                <button class="btn2" style="transition: all 0.3s ease;">E-APPOINTMENT</button>
+            </form>
+            <form method="GET" action="/Home/activitytracker">
+                <button class="btn2" style="transition: all 0.3s ease;">ACTIVITY-TRACKER</button>
+            </form>
+            <form method="GET" action="/Home/medicine">
+                <button class="btn2" style="transition: all 0.3s ease;">MEDICINE</button>
+            </form>
+            <form method="GET" action="/Home/workout">
+                <button class="btn2" style="transition: all 0.3s ease;">WORKOUT</button>
+            </form>
+            <form method="GET" action="/Home/blogs">
+                <button class="btn2" style="transition: all 0.3s ease;">INSPIRATION</a>
+            </form>
+        </ul>
+        <div class="Navbar-buttons" style="font-size: 1.1rem;">
+            <% if (!currUser) { %>
+             <form method="GET" action="/Home/login">
+                <button class="btn1" style="transition: all 0.3s ease;">LOG IN</button>
+            </form>
+            <form method="GET" action="/Home/signup">
+                <button class="btn2" style="transition: all 0.3s ease;">SIGN UP</button>
+            </form>
+            <% } else { %>
+            <form method="GET" action="/Home/logout">
+                <button class="btn1" style="transition: all 0.3s ease;">LOG OUT</button>
+            </form>
+            <% } %>
+        </div>
+    </div>
+
+    <style>
+        .btn1:hover, .btn2:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn1:active, .btn2:active {
+            transform: translateY(0);
+        }
+        .btn1 {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn2 {
+            background-color: transparent;
+            color: #333;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn2:hover {
+            background-color: #f0f0f0;
+        }
+        .btn1:hover {
+            background-color: #45a049;
+        }
+    </style>
+</body>

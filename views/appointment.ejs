@@ -1,0 +1,57 @@
+<% layout("/layouts/boilerplate") -%>
+
+<body>
+    <div class="overall">
+    <div class="form-container">
+        <h1 class="heading header-heading">Patient Registration</h1>
+
+        <form class="registration-form needs-validation" method="POST" action="/Home/appointed/<%= doctorChosen._id%>" novalidate>
+            <label for="Name"><b>Name:</b></label>
+            <input id="Name" type="text" placeholder="Enter Name" name="name" required>
+
+            <label for="Address"><b>Address:</b></label>
+            <input id="Address" type="text" placeholder="Enter Address" name="address" required>
+
+            <label for="Phone"><b>Phone No:</b></label>
+            <input id="Phone" type="tel" placeholder="Enter Phone Number" name="phone" required>
+
+            <label for="Email"><b>Email:</b></label> 
+            <input id="Email" type="email" placeholder="Enter Email" name="email" required>
+
+            <label for="Date"><b>Date:</b></label>
+            <input id="Date" type="date" name="date" required>
+
+            <label for="Time"><b>Time:</b></label>
+            <input id="Time" type="time" name="time" required>
+
+            <label><b>Symptoms:</b></label>
+            <div class="symptoms-section">
+                <label><input type="checkbox" name="fever"> Fever</label>
+                <label><input type="checkbox" name="cough"> Cough</label>
+                <label><input type="checkbox" name="stomachPain"> Stomach-pain</label>
+                <label><input type="checkbox" name="breathproblem"> Shortness of Breath</label>
+                <label><input type="checkbox" name="headache"> Headache</label>
+            </div>
+            <button class="submit" type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="doctor" style="margin-left: 6rem;">
+        <div class="col-md-4 col-sm-6 mb-4 " style="margin-left: 2rem; height: 600px; width: 400px;">
+            <div class="card shadow-lg border-0">
+                <img class="card-img-top" style="height: 300px; width:400px;" src="<%= doctorChosen.urlToImage %>" alt="Doctor Image">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-primary" style="overflow-y: hidden;"><%= doctorChosen.name %></h5>
+                    <p class="card-text"><strong>Specialization:</strong> <%= doctorChosen.specialized %></p>
+                    <p class="card-text"><strong>Email:</strong> 
+                        <a href="mailto:<%= doctorChosen.email %>" class="text-decoration-none"><%= doctorChosen.email %></a>
+                    </p>
+                    <p class="card-text"><strong>Phone:</strong> 
+                        <a href="tel:<%= doctorChosen.phone %>" class="text-decoration-none"><%= doctorChosen.phone %></a>
+                    </p>
+                    <p class="card-text"><strong>Available:</strong> <%= doctorChosen.available %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>

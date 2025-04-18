@@ -1,0 +1,46 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="profile-body">
+        <div class="profile-container">
+            <h2 class="profile-header">Profile Form</h2>
+            <form action="/Home/profile" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" class="input-field" id="name" name="name" required>
+    
+                <label for="age">Age:</label>
+                <input type="number" class="input-field" id="age" name="age" required>
+    
+                <label for="gender">Gender:</label>
+                <select class="select-field" id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+    
+                <label for="height">Height (cm):</label>
+                <input type="number" class="input-field" id="height" name="height" required>
+    
+                <label for="weight">Weight (kg):</label>
+                <input type="number" class="input-field" id="weight" name="weight" required>
+    
+                <label for="img">Image:</label>
+                <input type="text" class="input-field" id="img" name="img" required>
+    
+                <label for="issues">Health Issues:</label>
+                <input type="text" class="input-field" id="issues" name="issues" required>
+    
+                <label for="fitnessLevel">Fitness Level:</label>
+                <select class="select-field" id="fitnessLevel" name="fitnessLevel">
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+    
+                <button type="submit" class="button-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+
+    
+</body>
